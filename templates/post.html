@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<p><i><a href="/home">Home</a></i></p>
+
+    <h1>Build-a Blog</h1>
+    <form action='/' method='post'>
+
+        <label>New Blog: </label><br>
+            <input type="text" name='blog' value='{{blog_name}}' />
+        </label><br>
+            <p class="error">{{blog_name_error}}</p><br><br>
+
+        <label>Message</label><br>
+            <textarea name='content' rows="5" cols="50" value='{{content}}'>
+            </textarea>
+        </label><br>
+            <p class="error">{{content_error}}</p><br><br>
+        
+        <input type="submit" value='Add Blog' />
+    </form>
+{% endblock %}
