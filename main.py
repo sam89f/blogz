@@ -37,7 +37,9 @@ def index():
     
     if request.method == 'POST':
         blog_name = request.form['blog']
-        blog_content = request.form['content']
+        blog_content = request.form['content'].strip()
+        print("********************" + str(len(blog_content)) + "*********************")
+        print("********************" + blog_content + "*********************")
         if len(blog_name) < 1:
             blog_name_error = 'Blog must have a name'
         if len(blog_content) < 1:
