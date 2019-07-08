@@ -48,6 +48,7 @@ def index():
             new_blog = Blog(blog_name, blog_content)
             db.session.add(new_blog)
             db.session.commit()
+            return redirect('/home')
        
         return render_template('post.html', title="Build a Blog", content=blog_content, blog_name=blog_name, blog_name_error=blog_name_error, content_error=content_error)
            
