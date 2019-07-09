@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-<p><i><a href="/home">Home</a></i></p>
+<p><i><a href="/blog">Home</a></i></p>
 
     <h1>Build a Blog</h1>
-    <form action='/' method='post'>
+    <form action='/newpost' method='post'>
 
         <label>New Blog: </label><br>
             <input type="text" name='blog' value='{{blog_name}}' />

@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, render_template
+from flask import Flask, request, redirect, render_template, flash
 from flask_sqlalchemy import SQLAlchemy
 import cgi
 import os
@@ -23,13 +23,18 @@ class Blog(db.Model):
         self.name = name
         self.content = content
 
-@app.route('/home')
+@app.route('/blog')
 def home():
     
     blogs = Blog.query.all()
-    return render_template('home.html', title="Home Page", blogs=blogs)
+    id = request.args.get('id')
+    if id:
+        blog = Blog.query.filter_by(id=id).first()
+        return render_template('blog.html', title="Home Page", blog=blog)
+    else:
+        return render_template('home.html', title="Home Page", blogs=blogs)
 
-@app.route('/', methods=['POST', 'GET'])
+@app.route('/newpost', methods=['POST', 'GET'])
 def index():
 
     blog_name_error = ''
@@ -48,7 +53,9 @@ def index():
             new_blog = Blog(blog_name, blog_content)
             db.session.add(new_blog)
             db.session.commit()
-            return redirect('/home')
+            id = str(new_blog.id)
+            print("********************" + id + "*********************")
+            return redirect('/blog?id={}'.format(id))
        
         return render_template('post.html', title="Build a Blog", content=blog_content, blog_name=blog_name, blog_name_error=blog_name_error, content_error=content_error)
            

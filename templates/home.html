@@ -2,7 +2,7 @@
 
 
 {% block content %}
-<p><i><a href="/">New Blog</a></i></p>
+<p><i><a href='/newpost'>New Blog</a></i></p>
 
 {% if blogs|length == 0 %}
 <p>No blogs yet</p>
@@ -10,7 +10,7 @@
 
 <ul>
     {% for blog in blogs %}
-        <h2>{{blog.name}}</h2>
+        <h2><a href="./blog?id={{blog.id}}">{{blog.name}}</a></h2>
         <li>{{blog.content}}</li>
     {% endfor %}
 </ul>
