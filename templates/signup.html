@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Register: Blogz!</h1>
+<h1>Signup for Blogz!</h1>
 <div>
     <p>Already have an account? Then <a href='/login'>Login</a> to creat a new blog</p>
 </div>
 <form action="/signup" method='POST'>
-    <table>
+    <table align="center">
         <tr>
             <td><label for="username">Username</label></td>
             <td><input name="username" type="text" value='{{username}}' /></td>
@@ -21,7 +21,7 @@
             <td><label for="verify">Verify Passward</label></td>
             <td><input name="verify" type="password" value='{{verify}}' /></td>
         </tr>
-    </table>
+    </table><br>
 
     <input type="submit" value="SUBMIT" />
 </form>

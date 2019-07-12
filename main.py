@@ -35,7 +35,7 @@ class User(db.Model):
 
 @app.before_request
 def require_login():
-    allowed_routes = ['login', 'signup']
+    allowed_routes = ['login', 'signup', 'list_blogs', 'index']
     print('**************************************************')
     print(session)
     print('**************************************************')
@@ -113,19 +113,19 @@ def login():
 @app.route('/logout')
 def logout():
     del session['username']
-    return redirect('/login')
+    return redirect('/blog')
 
 
 @app.route('/blog')
-def home():
-    owner = User.query.filter_by(username=session['username']).first()
-    blogs = Blog.query.filter_by(owner=owner).all()
+def blog():
+    #owner = User.query.filter_by(username=session['username']).first()
+    blogs = Blog.query.all()
     id = request.args.get('id')
     if id:
         blog = Blog.query.filter_by(id=id).first()
-        return render_template('blog.html', title="Home Page", blog=blog)
+        return render_template('blog.html', title="Blog Page", blog=blog)
     else:
-        return render_template('home.html', title="Home Page", blogs=blogs)
+        return render_template('list_blog.html', title="Blogs Page", blogs=blogs)
 
 @app.route('/newpost', methods=['POST', 'GET'])
 def new_post():
