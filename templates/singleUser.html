@@ -1,25 +1,21 @@
 {% extends "base.html" %}
 
+
 {% block content %}
-<h1>Register: Blogz!</h1>
-<form action="/register" method='POST'>
-    <table>
-        <tr>
-            <td><label for="username">Username</label></td>
-            <td><input name="username" type="text" value='{{username}}' /></td>
-        </tr>
+<p></p>
+{% if blogs|length == 0 %}
+<p>No blogs by {{username}} yet</p>
+{% else %}
+<p>posts by {{username}}</p>
+<ul>
+    {% for blog in blogs %}
+        {% if blog.owner.username == username %}
+        <h2><a href="./blog?id={{blog.id}}">{{blog.name}}</a></h2>
+        <li>{{blog.content}}</li>
+        {% endif %}
 
-        <tr>
-            <td><label for="password">Passward</label></td>
-            <td><input name="password" type="password" value='{{password}}' /></td>
-        </tr>
+    {% endfor %}
+</ul>
+{% endif %}
 
-        <tr>
-            <td><label for="verify">Verify Passward</label></td>
-            <td><input name="verify" type="password" value='{{verify}}' /></td>
-        </tr>
-    </table>
-
-    <input type="submit" value="SUBMIT" />
-</form>
 {% endblock %}
