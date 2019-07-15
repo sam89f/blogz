@@ -9,10 +9,10 @@
 <p>posts by {{username}}</p>
 <ul>
     {% for blog in blogs %}
-        {% if blog.owner.username == username %}
+        
         <h2><a href="./blog?id={{blog.id}}">{{blog.name}}</a></h2>
         <li>{{blog.content}}</li>
-        {% endif %}
+       
 
     {% endfor %}
 </ul>
